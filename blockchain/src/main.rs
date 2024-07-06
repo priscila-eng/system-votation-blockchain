@@ -31,8 +31,26 @@ fn main() {
         }
     }
 
-    /* // Test cases
-    let mut blockchain = blockchain.lock().unwrap();
+    /* 
+    let mut vote_options_election1 = HashSet::new();
+    vote_options_election1.insert("option1".to_string());
+    vote_options_election1.insert("option2".to_string());
+
+    match blockchain.create_election("election1".to_string(), vote_options_election1) {
+        Ok(_) => println!("Election1 created successfully"),
+        Err(e) => println!("Failed to create election: {}", e),
+    }
+
+    let mut vote_options_election2 = HashSet::new();
+    vote_options_election2.insert("option1".to_string());
+    vote_options_election2.insert("option2".to_string());
+
+    match blockchain.create_election("election2".to_string(), vote_options_election2) {
+        Ok(_) => println!("Election2 created successfully"),
+        Err(e) => println!("Failed to create election: {}", e),
+    }
+
+    // Test cases
     match blockchain.add_block("Carlos_id_vote".to_string(), "election1".to_string(), "option1".to_string()) {
         Ok(_) => println!("Carlos_id_vote voted successfully in election1"),
         Err(e) => println!("Failed to vote: {}", e),
@@ -61,6 +79,16 @@ fn main() {
 
     match blockchain.add_block("Maria_id_vote".to_string(), "election2".to_string(), "option2".to_string()) {
         Ok(_) => println!("Maria_id_vote voted successfully in election2"),
+        Err(e) => println!("Failed to vote: {}", e),
+    }
+
+    match blockchain.add_block("Carlos_id_vote".to_string(), "non_existent_election".to_string(), "option1".to_string()) {
+        Ok(_) => println!("Carlos_id_vote voted successfully in non_existent_election"),
+        Err(e) => println!("Failed to vote: {}", e),
+    }
+
+    match blockchain.add_block("Maria_id_vote".to_string(), "election1".to_string(), "non_existent_option".to_string()) {
+        Ok(_) => println!("Maria_id_vote voted successfully in election1 with non_existent_option"),
         Err(e) => println!("Failed to vote: {}", e),
     }
 
